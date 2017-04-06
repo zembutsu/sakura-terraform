@@ -16,7 +16,6 @@
 * `terraform show` … 詳細情報の表示
 * `terraform output` … IP アドレスの表示
 * `terraform destroy` … 環境の破棄
-```
 
 ## curl で確認
 
