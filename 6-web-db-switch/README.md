@@ -14,5 +14,8 @@
 ![step6](../static/images/map-step6.png)
 
 
+## リファレンス
 
+* スイッチ／ルータ＋スイッチ | さくらのクラウドニュース
+  * http://cloud-news.sakura.ad.jp/switch/
 

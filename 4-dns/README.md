@@ -33,6 +33,9 @@ resource "sakuracloud_dns_record" "dev01" {
 * Terraform の `.tf` ファイルに追記すると、サーバ作成と同時に、ホスト名の割り当ても有効化できます。
 
 
+## リファレンス
 
+* DNS(アプライアンス) | さくらのクラウドニュース
+  * http://cloud-news.sakura.ad.jp/cloud_dns/
 
 

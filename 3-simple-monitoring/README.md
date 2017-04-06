@@ -41,6 +41,8 @@
 * Terraform の `.tf` ファイルに追記すると、サーバ作成と同時に、自動的に監視を有効化できます。
 
 
+## リファレンス
 
-
+* シンプル監視 | さくらのクラウドニュース
+  * http://cloud-news.sakura.ad.jp/simplemonitor/
 
