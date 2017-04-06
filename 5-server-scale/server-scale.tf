@@ -6,7 +6,7 @@ resource "sakuracloud_server" "servers" {
     count = "${var.count}"
     name = "${format("server%02d", count.index + 1)}"
     disks = ["${sakuracloud_disk.disks.*.id[count.index]}"]
-    tags = ["@virtio-net-pci"]
+    tags = ["@virtio-net-pci","step5"]
     description = "by Terraform"
 }
 
@@ -17,6 +17,7 @@ resource "sakuracloud_disk" "disks"{
     source_archive_id = "${data.sakuracloud_archive.centos.id}"
     ssh_key_ids = ["${sakuracloud_ssh_key.key.id}"]
     disable_pw_auth = true
+    tags = ["step5"]
     description = "by Terraform"
 }
 
