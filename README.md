@@ -1,5 +1,10 @@
 # Terraform for Sakura Cloud ハンズオン資料
 
+## はじめに
+
+* Terraform ( https://www.terraform.io/ ) は HashiCorp が提供するインフラをコードで管理するためのツールであり、オープンソースとして開発・公開されています。
+* [Terraform for さくらのクラウド](https://github.com/yamamoto-febc/terraform-provider-sakuracloud) は、@ yamamoto-febc さんが開発されているさくらのクラウドに対応した Terraform プロバイダです。
+
 ## セットアップ手順
 
 さくらのクラウド上に仮想サーバを作成します。ログイン後、作業用アカウント `terraform` を作成し、 Terraoform が使えるようにセットアップします。必要な設定ファイル等は GitHub から取得します。
