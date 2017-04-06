@@ -79,6 +79,14 @@ HISTCONTROL=ignorespace
  export SAKURACLOUD_ZONE=tk1a
 ```
 
+### 5. SSH 鍵ペアの作成
+
+`terraform` アカウントで、作成した仮想サーバにログインするための鍵ペアを作成します。
+```
+$ ssh-keygen -t rsa
+```
+
+
 以上で準備は完了です。
 
 ## ハンズオンの進め方
