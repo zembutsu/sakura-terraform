@@ -7,8 +7,8 @@ resource "sakuracloud_simple_monitor" "dev-mon01" {
         path = "/"
         status = "200"
     }
-    notify_email_enabled = true
-    notify_email_html = true
-    notify_slack_enabled = true
+    #notify_email_enabled = true
+    #notify_email_html = true
+    #notify_slack_enabled = true
     #notify_slack_webhook = "https://hooks.slack.com/services/<TOKEN>"
 }
