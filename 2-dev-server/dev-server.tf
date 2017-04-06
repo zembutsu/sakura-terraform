@@ -2,7 +2,7 @@
 resource "sakuracloud_server" "dev01" {
     name = "dev01"
     disks = ["${sakuracloud_disk.dev01.id}"]
-    tags = ["@virtio-net-pci"]
+    tags = ["@virtio-net-pci","step2"]
     packet_filter_ids = ["${sakuracloud_packet_filter.dev_ssh_http.id}"]
     description = "by Terraform"
     provisioner "remote-exec" {
@@ -30,6 +30,7 @@ resource "sakuracloud_disk" "dev01"{
     source_archive_id = "${data.sakuracloud_archive.centos.id}"
     ssh_key_ids = ["${sakuracloud_ssh_key.key.id}"]
     disable_pw_auth = true
+    tags = ["step2"]
     description = "by Terraform"
 }
 
@@ -53,6 +54,7 @@ output "server_ip" {
 
 resource "sakuracloud_packet_filter" "dev_ssh_http" {
     name = "dev_ssh_http"
+    tags = ["step2"]
     description = "by Terraform"
     expressions = {
         protocol = "icmp"

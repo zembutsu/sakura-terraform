@@ -21,9 +21,16 @@ Do you really want to destroy?
 
 data.sakuracloud_archive.centos: Refreshing state...
 (snip)
-Destroy complete! Resources: 3 destroyed.
+Destroy complete! Resources: 4 destroyed.
 ```
 
+## SSH 接続コマンド
+
+```
+$ ssh -l root $(terraform output server_ip)
+```
+
+コマンド `terraform output server_ip` は、インターネット側の IP アドレス情報を表示します。
 
 ## マップ機能で確認
 
