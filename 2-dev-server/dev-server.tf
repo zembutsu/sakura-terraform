@@ -54,7 +54,6 @@ output "server_ip" {
 
 resource "sakuracloud_packet_filter" "dev_ssh_http" {
     name = "dev_ssh_http"
-    tags = ["step2"]
     description = "by Terraform"
     expressions = {
         protocol = "icmp"

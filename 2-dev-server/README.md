@@ -3,6 +3,7 @@
 典型的な開発環境を準備します。
 
 * `Apache` を自動セットアップ
+  * ドキュメントルートに IP アドレスを表示するファイルを設置
 * `firewall-cmd` でポート `80` の公開を追加
 * 「パケットフィルタ」機能に `icmp`、`ssh`、`http` ルールを作成
 
@@ -17,8 +18,19 @@
 * `terraform destroy` … 環境の破棄
 ```
 
+## curl で確認
+
+```
+$ curl http://$(terraform output server_ip)
+hello, this is <IP_ADDR>
+```
 
 ## マップ機能で確認
 
-![step1](../static/images/map-step2.png)
+![step2](../static/images/map-step2.png)
+
+## パケットフィルタを確認
+
+![step2](../static/images/step2-packetfilter.png)
+
 
