@@ -4,7 +4,6 @@
 
 ![step5](../static/images/graph-step5.png)
 
-Failed to load Terraform configuration or plan: open apply: no such file or directory
 
 ## コマンド
 
