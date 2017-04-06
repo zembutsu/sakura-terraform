@@ -27,5 +27,5 @@ Destroy complete! Resources: 3 destroyed.
 
 ## マップ機能で確認
 
-![step1](../static/images/graph-step1.png)
+![step1](../static/images/map-step1.png)
 
