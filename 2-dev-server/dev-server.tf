@@ -1,4 +1,3 @@
-
 resource "sakuracloud_server" "dev01" {
     name = "dev01"
     disks = ["${sakuracloud_disk.dev01.id}"]
@@ -8,23 +7,23 @@ resource "sakuracloud_server" "dev01" {
     provisioner "remote-exec" {
         connection {
             type = "ssh"
-	    user = "root"
-            host = "${sakuracloud_server.dev01.base_nw_ipaddress}"
+            user = "root"
+            host = "${self.ipaddress}"
             private_key = "${file("~/.ssh/id_rsa")}"
         }
         inline = [
-		"yum -y update",
-		"yum -y install httpd",
-		"systemctl enable httpd",
-		"systemctl start httpd",
-		"echo hello, this is ${sakuracloud_server.dev01.base_nw_ipaddress} > /var/www/html/index.html",
-		"firewall-cmd --add-port=80/tcp --permanent",
-		"firewall-cmd --reload"
+            "yum -y update",
+            "yum -y install httpd",
+            "systemctl enable httpd",
+            "systemctl start httpd",
+            "echo hello, this is ${self.ipaddress} > /var/www/html/index.html",
+            "firewall-cmd --add-port=80/tcp --permanent",
+            "firewall-cmd --reload"
         ]
     }
 }
 
-resource "sakuracloud_disk" "dev01"{
+resource "sakuracloud_disk" "dev01" {
     name = "dev01"
     hostname = "dev01"
     source_archive_id = "${data.sakuracloud_archive.centos.id}"
@@ -36,10 +35,7 @@ resource "sakuracloud_disk" "dev01"{
 
 
 data sakuracloud_archive "centos" {
-    filter = {
-        name   = "Tags"
-        values = ["current-stable", "arch-64bit", "distro-centos"]
-    }
+    os_type = "centos"
 }
 
 resource "sakuracloud_ssh_key" "key"{
