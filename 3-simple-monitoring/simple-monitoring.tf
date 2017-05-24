@@ -1,5 +1,5 @@
 resource "sakuracloud_simple_monitor" "dev-mon01" {
-    #target = "${sakuracloud_server.myserver.base_nw_ipaddress}"
+    #target = "${sakuracloud_server.myserver.ipaddress}"
     target = "<IP_ADDRESS_HERE>"
     health_check = {
         protocol = "http"

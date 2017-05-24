@@ -20,12 +20,18 @@
 VIP の情報を確認するには、コントロールパネルにアクセスするか、次のコマンドを実行します。
 
 ```
-$ terraform show | grep vars.vip
-  vars.vip = <IPアドレスが表示>
+$ terraform output vip
+  vip = <IPアドレスが表示>
 ```
 
 VIP を `curl` やブラウザで表示すると、2台のサーバの情報（`server0` または `server1`）を表示します（最小セッション方式のため、再読みしても同じホスト名が出る場合があります）。
 
+### curl で確認する例
+
+```
+$ curl http://$(terraform output vip)
+server0(またはserver1)
+```
 
 ## リファレンス
 

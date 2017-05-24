@@ -1,10 +1,10 @@
 # データソース(アーカイブ)
 data sakuracloud_archive "centos" {
-    os_type="centos"
+    os_type = "centos"
 }
 
 # ディスク
-resource "sakuracloud_disk" "disks"{
+resource "sakuracloud_disk" "disks" {
     # 2台分
     count = 2
     # ディスク名
@@ -31,12 +31,12 @@ resource "sakuracloud_server" "servers" {
     tags = ["@virtio-net-pci"]
 
     # ルータ+スイッチを接続
-    base_interface = "${sakuracloud_internet.router.switch_id}"
+    nic = "${sakuracloud_internet.router.switch_id}"
 
     # eth0のIPアドレス/ネットマスク/ゲートウェイ設定
-    base_nw_ipaddress = "${sakuracloud_internet.router.nw_ipaddresses[count.index]}"
-    base_nw_mask_len = "${sakuracloud_internet.router.nw_mask_len}"
-    base_nw_gateway = "${sakuracloud_internet.router.nw_gateway}"
+    ipaddress = "${sakuracloud_internet.router.ipaddresses[count.index]}"
+    nw_mask_len = "${sakuracloud_internet.router.nw_mask_len}"
+    gateway = "${sakuracloud_internet.router.gateway}"
 }
 
 # ルータ+スイッチ
@@ -59,7 +59,7 @@ data "template_file" "lb_dsr_tmpl" {
 
   vars {
     # ルータ+スイッチのグローバルIPを参照しテンプレートに渡す
-    vip = "${sakuracloud_internet.router.nw_ipaddresses[3]}"
+    vip = "${sakuracloud_internet.router.ipaddresses[3]}"
   }
 }
 
@@ -82,9 +82,9 @@ resource "sakuracloud_load_balancer" "lb" {
     VRID = 1
 
     # IPv4アドレス#1 / ネットマスク / ゲートウェイ
-    ipaddress1 = "${sakuracloud_internet.router.nw_ipaddresses[2]}"
+    ipaddress1 = "${sakuracloud_internet.router.ipaddresses[2]}"
     nw_mask_len = "${sakuracloud_internet.router.nw_mask_len}"
-    default_route = "${sakuracloud_internet.router.nw_gateway}"
+    default_route = "${sakuracloud_internet.router.gateway}"
 }
 
 # ロードバランサーのVIP
@@ -93,7 +93,7 @@ resource "sakuracloud_load_balancer_vip" "vip" {
     load_balancer_id = "${sakuracloud_load_balancer.lb.id}"
 
     # VIP
-    vip = "${sakuracloud_internet.router.nw_ipaddresses[3]}"
+    vip = "${sakuracloud_internet.router.ipaddresses[3]}"
 
     # 監視ポート
     port = 80
@@ -108,10 +108,15 @@ resource "sakuracloud_load_balancer_server" "servers"{
     load_balancer_vip_id = "${sakuracloud_load_balancer_vip.vip.id}"
 
     # 実サーバーのIPアドレス
-    ipaddress = "${sakuracloud_server.servers.*.base_nw_ipaddress[count.index]}"
+    ipaddress = "${sakuracloud_server.servers.*.ipaddress[count.index]}"
 
     # 監視設定
     check_protocol = "http"
     check_path = "/"
     check_status = "200"
+}
+
+# ロードバランサーのVIP用アウトプット定義
+output vip {
+    value = "${sakuracloud_load_balancer_vip.vip.vip}"
 }

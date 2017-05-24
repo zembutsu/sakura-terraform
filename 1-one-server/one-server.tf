@@ -17,10 +17,7 @@ resource "sakuracloud_disk" "disk01"{
 
 
 data sakuracloud_archive "centos" {
-    filter = {
-        name   = "Tags"
-        values = ["current-stable", "arch-64bit", "distro-centos"]
-    }
+    os_type = "centos"
 }
 
 resource "sakuracloud_ssh_key" "key"{
@@ -30,7 +27,7 @@ resource "sakuracloud_ssh_key" "key"{
 }
 
 output "server_ip" {
-   value = "${sakuracloud_server.server01.base_nw_ipaddress}"
+   value = "${sakuracloud_server.server01.ipaddress}"
 }
 
 

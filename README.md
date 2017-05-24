@@ -57,7 +57,7 @@ $ sh ./terraform-setup.sh
 6. Terraform の動作確認（バージョン情報の表示）
 ```
 $ terraform version
-Terraform v0.9.2
+Terraform v0.9.4
 ```
 
 ### 4. 環境変数の設定
@@ -109,14 +109,15 @@ $ ssh-keygen -t rsa
   * https://www.terraform.io/
 * Terraform for さくらのクラウド
   * https://github.com/yamamoto-febc/terraform-provider-sakuracloud
-* Terraform for さくらのクラウド スタートガイド （第一回） ～インストールから基本操作 ～ - さくらのナレッジ
+* Terraform for さくらのクラウド スタートガイド （第一回）～インストールから基本操作 ～ - さくらのナレッジ
   * http://knowledge.sakura.ad.jp/knowledge/7230/
-* Terraform for さくらのクラウド スタートガイド （第二回） ～便利なビルトイン機能～ - さくらのナレッジ
+* Terraform for さくらのクラウド スタートガイド （第二回）～便利なビルトイン機能～ - さくらのナレッジ
   * http://knowledge.sakura.ad.jp/knowledge/7550/
 * Terraform for さくらのクラウド スタートガイド （第三回）〜さくらのクラウド上にインフラ構築〜 - さくらのナレッジ
   * http://knowledge.sakura.ad.jp/knowledge/7660/
 * Terraform for さくらのクラウド スタートガイド （第四回）〜ネットワークの構築〜 - さくらのナレッジ
   * http://knowledge.sakura.ad.jp/knowledge/8248/
-
-
+* Terraform for さくらのクラウド スタートガイド （第五回）〜サービス提供用のリソースと応用編〜 - さくらのナレッジ
+  * http://knowledge.sakura.ad.jp/knowledge/8581/
+   
 

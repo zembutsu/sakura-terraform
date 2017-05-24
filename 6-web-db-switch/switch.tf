@@ -11,8 +11,8 @@ resource "sakuracloud_server" "web01" {
     memory = "1"
     disks = ["${sakuracloud_disk.web01.id}"]
     tags = ["@virtio-net-pci","step6"]
-    base_interface = "shared"
-    additional_interfaces = ["${sakuracloud_switch.local-sw01.id}"]
+    nic = "shared"
+    additional_nics = ["${sakuracloud_switch.local-sw01.id}"]
 }
 
 resource "sakuracloud_disk" "web01"{
@@ -32,8 +32,8 @@ resource "sakuracloud_server" "db01" {
     memory = "1"
     disks = ["${sakuracloud_disk.db01.id}"]
     tags = ["@virtio-net-pci","step6"]
-    base_interface = "shared"
-    additional_interfaces = ["${sakuracloud_switch.local-sw01.id}"]
+    nic = "shared"
+    additional_nics = ["${sakuracloud_switch.local-sw01.id}"]
 }
 
 resource "sakuracloud_disk" "db01"{
@@ -47,10 +47,7 @@ resource "sakuracloud_disk" "db01"{
 }
 
 data "sakuracloud_archive" "centos" {
-    filter = {
-        name   = "Tags"
-        values = ["current-stable", "arch-64bit", "distro-centos"]
-    }
+    os_type = "centos"
 }
 
 resource "sakuracloud_ssh_key" "terraform"{
