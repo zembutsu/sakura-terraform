@@ -57,7 +57,7 @@ $ sh ./terraform-setup.sh
 6. Terraform の動作確認（バージョン情報の表示）
 ```
 $ terraform version
-Terraform v0.9.4
+Terraform v0.10.8
 ```
 
 ### 4. 環境変数の設定
