@@ -97,7 +97,7 @@ $ ssh-keygen -t rsa
 ## ハンズオンの進め方
 
 数字で始まるディレクトリ内にサンプルの Terraform 用設定ファイル `.tf` があります。
-各ディレクトリ内で `terraform plan` → `terraform apply` を実行し、リソースを作成します。
+各ディレクトリ内で `terraform init` →  `terraform plan` → `terraform apply` を実行し、リソースを作成します。
 
 ## リソースの削除の仕方
 
