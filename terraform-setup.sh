@@ -11,7 +11,7 @@ mv ./terraform ~/bin
 
 
 # provider sakuracloud
-curl -L https://github.com/yamamoto-febc/terraform-provider-sakuracloud/releases/download/v0.14.0/terraform-provider-sakuracloud_linux-amd64.zip > terraform-provider-sakuracloud.zip
+curl -L https://github.com/sacloud/terraform-provider-sakuracloud/releases/download/v0.14.0/terraform-provider-sakuracloud_linux-amd64.zip > terraform-provider-sakuracloud.zip
 unzip terraform-provider-sakuracloud.zip
 mv ./terraform-provider-sakuracloud ~/bin
 
