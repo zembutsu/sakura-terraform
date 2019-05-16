@@ -1,9 +1,12 @@
 resource "sakuracloud_server" "dev01" {
     name = "dev01"
     disks = ["${sakuracloud_disk.dev01.id}"]
+    hostname = "dev01"
     tags = ["@virtio-net-pci","step2"]
     packet_filter_ids = ["${sakuracloud_packet_filter.dev_ssh_http.id}"]
     description = "by Terraform"
+    disable_pw_auth = true
+    ssh_key_ids = ["${sakuracloud_ssh_key.key.id}"]
     provisioner "remote-exec" {
         connection {
             type = "ssh"
@@ -25,10 +28,7 @@ resource "sakuracloud_server" "dev01" {
 
 resource "sakuracloud_disk" "dev01" {
     name = "dev01"
-    hostname = "dev01"
     source_archive_id = "${data.sakuracloud_archive.centos.id}"
-    ssh_key_ids = ["${sakuracloud_ssh_key.key.id}"]
-    disable_pw_auth = true
     tags = ["step2"]
     description = "by Terraform"
 }
@@ -45,7 +45,7 @@ resource "sakuracloud_ssh_key" "key"{
 }
 
 output "server_ip" {
-   value = "${sakuracloud_server.dev01.base_nw_ipaddress}"
+   value = "${sakuracloud_server.dev01.display_ipaddress}"
 }
 
 resource "sakuracloud_packet_filter" "dev_ssh_http" {
@@ -76,4 +76,3 @@ resource "sakuracloud_packet_filter" "dev_ssh_http" {
         description = "Deny all"
     }
 }
-
