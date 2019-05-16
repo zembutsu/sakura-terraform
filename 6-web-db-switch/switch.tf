@@ -6,6 +6,7 @@ resource "sakuracloud_switch" "local-sw01" {
 
 resource "sakuracloud_server" "web01" {
     name = "web01"
+    hostname = "web01"
     description = "by Terraform"
     core = "1"
     memory = "1"
@@ -13,20 +14,20 @@ resource "sakuracloud_server" "web01" {
     tags = ["@virtio-net-pci","step6"]
     nic = "shared"
     additional_nics = ["${sakuracloud_switch.local-sw01.id}"]
+    ssh_key_ids = ["${sakuracloud_ssh_key.terraform.id}"]
+    disable_pw_auth = true
 }
 
 resource "sakuracloud_disk" "web01"{
     name = "web01"
-    hostname = "web01"
     description = "by Terraform"
     source_archive_id = "${data.sakuracloud_archive.centos.id}"
-    ssh_key_ids = ["${sakuracloud_ssh_key.terraform.id}"]
-    disable_pw_auth = true
     tags = ["step6"]
 }
 
 resource "sakuracloud_server" "db01" {
     name = "db01"
+    hostname = "db01"
     description = "by Terraform"
     core = "1"
     memory = "1"
@@ -34,15 +35,14 @@ resource "sakuracloud_server" "db01" {
     tags = ["@virtio-net-pci","step6"]
     nic = "shared"
     additional_nics = ["${sakuracloud_switch.local-sw01.id}"]
+    ssh_key_ids = ["${sakuracloud_ssh_key.terraform.id}"]
+    disable_pw_auth = true
 }
 
 resource "sakuracloud_disk" "db01"{
     name = "db01"
-    hostname = "db01"
     description = "by Terraform"
     source_archive_id = "${data.sakuracloud_archive.centos.id}"
-    ssh_key_ids = ["${sakuracloud_ssh_key.terraform.id}"]
-    disable_pw_auth = true
     tags = ["step6"]
 }
 
@@ -55,4 +55,3 @@ resource "sakuracloud_ssh_key" "terraform"{
     public_key = "${file("~/.ssh/id_rsa.pub")}"
     description = "by Terraform"
 }
-
